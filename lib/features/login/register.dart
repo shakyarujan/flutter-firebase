@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/commons/control/custom_button.dart';
 import 'package:flutter_firebase/commons/control/custom_textfield.dart';
-import 'package:flutter_firebase/features/login/register.dart';
 
-// ignore: must_be_immutable
-class Login extends StatefulWidget {
+class Register extends StatefulWidget {
   final Function()? onTap;
-  const Login({super.key, this.onTap});
+  const Register({super.key, this.onTap});
 
   @override
-  State<Login> createState() => _LoginState();
+  // ignore: library_private_types_in_public_api
+  _RegisterState createState() => _RegisterState();
 }
 
-class _LoginState extends State<Login> {
-  TextEditingController emailController = TextEditingController();
-
-  TextEditingController passwordController = TextEditingController();
-
+class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
+    TextEditingController emailController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
+    TextEditingController confirmPasswordController = TextEditingController();
+
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       body: Center(
@@ -28,24 +27,14 @@ class _LoginState extends State<Login> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
-                Icons.lock,
+                Icons.app_registration_rounded,
                 size: 100,
                 color: Theme.of(context).colorScheme.inversePrimary,
               ),
               const SizedBox(
                 height: 25,
               ),
-              const Text.rich(
-                TextSpan(
-                  children: [
-                    TextSpan(
-                      text: 'Flutter ',
-                      style: TextStyle(fontSize: 23.0),
-                    ),
-                    TextSpan(text: '🔥 Base', style: TextStyle(fontSize: 23.0)),
-                  ],
-                ),
-              ),
+              const Text('Let\'s register for your account'),
               const SizedBox(
                 height: 24,
               ),
@@ -69,23 +58,24 @@ class _LoginState extends State<Login> {
                         color: Theme.of(context).colorScheme.inversePrimary),
                     obscureText: true,
                   ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text(
-                    'Forget Password?',
-                    style: TextStyle(
+                  const SizedBox(
+                    height: 14.0,
+                  ),
+                  CustomTextField(
+                    controller: confirmPasswordController,
+                    hintText: 'Confirm Password',
+                    borderRadius: 8.0,
+                    borderSide: BorderSide(
                         color: Theme.of(context).colorScheme.inversePrimary),
-                  )
+                    obscureText: true,
+                  ),
                 ],
               ),
               const SizedBox(
                 height: 24,
               ),
               CustomButton(
-                text: 'Sign In',
+                text: 'Sign Up',
                 textColor: Theme.of(context).colorScheme.primary,
                 radius: 8.0,
                 color: Theme.of(context).colorScheme.inversePrimary,
@@ -98,7 +88,7 @@ class _LoginState extends State<Login> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Not a member?',
+                    'Already a member?',
                     style: TextStyle(
                         fontSize: 16.0,
                         color: Theme.of(context).colorScheme.inversePrimary),
@@ -108,7 +98,7 @@ class _LoginState extends State<Login> {
                   ),
                   GestureDetector(
                     child: const Text(
-                      'Register Now',
+                      'Login Now',
                       style: TextStyle(
                         color: Colors.blue,
                         fontSize: 16.0,
@@ -116,12 +106,7 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Register(),
-                        ),
-                      );
+                      Navigator.pop(context);
                     },
                   ),
                 ],
