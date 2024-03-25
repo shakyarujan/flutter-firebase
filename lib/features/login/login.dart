@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/commons/control/custom_button.dart';
 import 'package:flutter_firebase/commons/control/custom_textfield.dart';
@@ -16,6 +17,13 @@ class _LoginState extends State<Login> {
   TextEditingController emailController = TextEditingController();
 
   TextEditingController passwordController = TextEditingController();
+
+  void signIn() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: emailController.text,
+      password: passwordController.text,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +97,7 @@ class _LoginState extends State<Login> {
                 textColor: Theme.of(context).colorScheme.primary,
                 radius: 8.0,
                 color: Theme.of(context).colorScheme.inversePrimary,
-                onTap: widget.onTap,
+                onTap: signIn,
               ),
               const SizedBox(
                 height: 24,
