@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/app/helper/theme/dark_theme.dart';
 import 'package:flutter_firebase/app/helper/theme/light_theme.dart';
-import 'package:flutter_firebase/features/login/login.dart';
+import 'package:flutter_firebase/features/authentication/auth.dart';
 
 void main() {
   runApp(const Main());
@@ -16,7 +16,7 @@ class Main extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: lightMode,
       darkTheme: darkMode,
-      home: Login(),
+      home: const Auth(),
     );
   }
 }
