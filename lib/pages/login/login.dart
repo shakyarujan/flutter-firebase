@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/commons/control/custom_button.dart';
 import 'package:flutter_firebase/commons/control/custom_textfield.dart';
-import 'package:flutter_firebase/features/login/register.dart';
+import 'package:flutter_firebase/pages/login/register.dart';
 
 // ignore: must_be_immutable
 class Login extends StatefulWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_firebase/features/home/home.dart';
-import 'package:flutter_firebase/features/login/login.dart';
+import 'package:flutter_firebase/pages/landingPage/landing.dart';
+import 'package:flutter_firebase/pages/login/login.dart';
 
 class Auth extends StatefulWidget {
   const Auth({super.key});
@@ -19,7 +19,7 @@ class _AuthState extends State<Auth> {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: ((context, snapshot) {
           if (snapshot.hasData) {
-            return const Home();
+            return const LandingPage();
           } else {
             return const Login();
           }

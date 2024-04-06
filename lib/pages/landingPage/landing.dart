@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase/features/profile/profile.dart';
+import 'package:flutter_firebase/pages/home/home.dart';
+import 'package:flutter_firebase/pages/profile/profile.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key});
+class LandingPage extends StatefulWidget {
+  const LandingPage({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  State<LandingPage> createState() => _LandingPageState();
 }
 
-class _HomeState extends State<Home> {
+class _LandingPageState extends State<LandingPage> {
   int _selectedIndex = 0;
 
-  final List<Widget> _pageOptions = [Profile(), Profile(), Profile()];
+  final List<Widget> _pageOptions = [
+    const Home(),
+    const Profile(),
+    const Profile(),
+    const Profile(),
+  ];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -22,9 +28,6 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-      ),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(

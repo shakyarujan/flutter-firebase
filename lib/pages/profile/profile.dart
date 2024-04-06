@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 class Profile extends StatelessWidget {
   const Profile({super.key});
 
-  // void signOut() {
-  //   FirebaseAuth.instance.signOut();
-  // }
+  void signOut() {
+    FirebaseAuth.instance.signOut();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +14,10 @@ class Profile extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Profile'),
         actions: [
-          // IconButton(
-          //   onPressed: signOut,
-          //   icon: const Icon(Icons.logout),
-          // )
+          IconButton(
+            onPressed: signOut,
+            icon: const Icon(Icons.logout),
+          )
         ],
       ),
       body: const Center(
