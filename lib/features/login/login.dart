@@ -15,14 +15,40 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   TextEditingController emailController = TextEditingController();
-
   TextEditingController passwordController = TextEditingController();
 
-  void signIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: emailController.text,
-      password: passwordController.text,
+  showLoading() {
+    showDialog(
+      context: context,
+      builder: (context) => const Center(
+        child: CircularProgressIndicator(),
+      ),
     );
+  }
+
+  void displayMessage(String msg) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(msg),
+      ),
+    );
+  }
+
+  void signIn() async {
+    showLoading();
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text,
+        password: passwordController.text,
+      );
+      if (context.mounted) {
+        // ignore: use_build_context_synchronously
+        Navigator.of(context).pop();
+      }
+    } on FirebaseAuthException catch (e) {
+      Navigator.of(context).pop();
+      displayMessage(e.code);
+    }
   }
 
   @override
@@ -127,7 +153,7 @@ class _LoginState extends State<Login> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Register(),
+                          builder: (context) => const Register(),
                         ),
                       );
                     },
